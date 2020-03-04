@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app
+  labels:
+    app: react-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-app
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: build-output
+              mountPath: /usr/share/nginx/html
+        - name: builder
+          image: johnbeck/reactrunner:v1
+          imagePullPolicy: Always
+          env:
+            - name: GITHUB_REPO
+              value: http://unity00.hubgoo.com:3002/devadmin/react-web-audio.git
+            - name: POLL_INTERVAL
+              value: "30"
+          volumeMounts:
+            - name: build-output
+              mountPath: /build
+      volumes:
+        - name: build-output
+          emptyDir: {}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: react-app
+  labels:
+    app: react-app
+spec:
+  selector:
+    app: react-app
+  ports:
+    - port: 80
+      name: http
+      targetPort: 80
+  type: LoadBalancer
+EOF
