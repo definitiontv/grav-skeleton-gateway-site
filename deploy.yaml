@@ -27,7 +27,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: GITHUB_REPO
-              value: http://unity00.hubgoo.com:3002/devadmin/react-web-audio.git
+              value: "http://unity00.hubgoo.com:3002/devadmin/react-web-audio.git"
             - name: POLL_INTERVAL
               value: "30"
           volumeMounts:
@@ -51,4 +51,3 @@ spec:
       name: http
       targetPort: 80
   type: LoadBalancer
-EOF
