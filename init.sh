@@ -1,4 +1,5 @@
 #!/bin/bash
+#version for simple nginx maintenance
 
 if [ -z "$GITHUB_REPO" ]; then
     echo "Please provide a Github repo URL"
@@ -15,8 +16,8 @@ echo "Cloning repo '$GITHUB_REPO'"
 git clone $GITHUB_REPO $CODE_DIR
 cd $CODE_DIR
 
-echo "Running 'npm install'"
-npm install
+echo "no need to be Running 'npm install'"
+#npm install
 cd ..
 
 echo "Watching for code changes"

@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-app
+  name: ggit-app
   labels:
-    app: react-app
+    app: ggit-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: react-app
+      app: ggit-app
   template:
     metadata:
       labels:
-        app: react-app
+        app: ggit-app
     spec:
       containers:
         - name: nginx
@@ -23,11 +23,11 @@ spec:
             - name: build-output
               mountPath: /usr/share/nginx/html
         - name: builder
-          image: johnbeck/reactrunner:v1
+          image: johnbeck/autograv:v1
           imagePullPolicy: Always
           env:
             - name: GITHUB_REPO
-              value: "https://github.com/netlify-templates/one-click-hugo-cms.git"
+              value: "https://github.com/definitiontv/grav-skeleton-gateway-site.git"
             - name: POLL_INTERVAL
               value: "30"
           volumeMounts:
@@ -40,12 +40,12 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: react-app
+  name: ggit-app
   labels:
-    app: react-app
+    app: ggit-app
 spec:
   selector:
-    app: react-app
+    app: ggit-app
   ports:
     - port: 80
       name: http
