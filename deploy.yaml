@@ -27,7 +27,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: GITHUB_REPO
-              value: "http://unity00.hubgoo.com:3002/devadmin/react-web-audio.git"
+              value: "https://github.com/netlify-templates/one-click-hugo-cms.git"
             - name: POLL_INTERVAL
               value: "30"
           volumeMounts:

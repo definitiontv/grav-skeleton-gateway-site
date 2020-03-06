@@ -28,5 +28,8 @@ if [ "$CHANGES" -gt "0" ] || [ ! -d "$OUTPUT_FOLDER" ] || [[ ! $(ls -A "$OUTPUT_
 
     # Move the build contents to the output folder
     cp -a build/. $OUTPUT_FOLDER
+    ##we shoudl detect - just doing a few common ones manually
+    cp -a /code/dist/*.* /build
+    ##end copy detected 
     echo "Build completed."
 fi
